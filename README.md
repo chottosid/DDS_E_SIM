@@ -1,6 +1,6 @@
 # DDS-E-SIM: DNA Error Simulation
 
-A flexible framework for simulating DNA sequencing errors using deep learning models. Currently supports two approaches: Variational Autoencoder (VAE) and Autoregressive Transformer.
+A flexible framework for simulating DNA sequencing errors using deep learning models.
 
 ## Quick Start
 
