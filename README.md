@@ -46,11 +46,6 @@ main.py                        # Main entry point
 
 Switch between models by changing `MODEL_TYPE` in config.py.
 
-## Data Format
-
-- **VAE**: CSV with `input` and `target` columns
-- **Autoregressive**: CSV with `Center_Sequence` and `Noisy_Read` columns
-
 ## Analysis
 
 The framework includes comprehensive error analysis:
