@@ -2,3 +2,8 @@ torch
 pandas
 numpy
 tqdm
+edlib
+seaborn
+matplotlib
+scikit-learn
+biopython

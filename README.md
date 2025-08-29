@@ -1,38 +1,62 @@
-DNA Sequence Prediction with Transformer VAE
+# DDS-E-SIM: DNA Error Simulation
 
-This project implements a Transformer-based Variational Autoencoder for DNA sequence prediction tasks.
+A flexible framework for simulating DNA sequencing errors using deep learning models. Currently supports two approaches: Variational Autoencoder (VAE) and Autoregressive Transformer.
 
-Setup
+## Quick Start
 
 1. Install dependencies:
+   ```bash
    pip install -r requirements.txt
+   ```
 
-2. Update data paths in config.py if needed
+2. Choose your model in `config.py`:
+   ```python
+   MODEL_TYPE = 'vae'  # or 'autoregressive'
+   ```
 
-3. Run training and inference:
+3. Run training:
+   ```bash
    python main.py
+   ```
 
-Project Structure
+## Project Structure
 
+```
 src/
-├── __init__.py
-├── data.py        - Dataset class and data loading
-├── model.py       - Transformer VAE architecture
-├── train.py       - Training loop with checkpointing
-├── inference.py   - Model inference and result export
-└── utils.py       - Utility functions and constants
+├── data.py                    # Data loading for both models
+├── model.py                   # VAE implementation  
+├── autoregressive_model.py    # Autoregressive transformer
+├── model_factory.py           # Model creation utilities
+├── train.py                   # VAE training
+├── autoregressive_train.py    # Autoregressive training
+├── inference.py               # VAE inference
+├── autoregressive_inference.py # Autoregressive inference
+├── evaluation.py              # Analysis and evaluation tools
+└── utils.py                   # Shared utilities
 
-config.py          - Hyperparameters and configuration
-main.py           - Main entry point
-requirements.txt  - Dependencies
+config.py                      # All configuration settings
+main.py                        # Main entry point
+```
 
-Model Details
+## Models
 
-The model uses a Transformer encoder-decoder architecture with VAE latent space for DNA sequence generation. It processes sequences with one-hot encoding for nucleotides A, C, G, T plus special tokens for start, end, and padding.
+**VAE**: Uses encoder-decoder architecture with latent space for learning sequence representations.
 
-Key features:
-- Free-running autoregressive training
-- KL divergence regularization 
-- Positional encoding for sequence awareness
-- Checkpointing and best model saving
-- Batch inference with CSV export
+**Autoregressive**: Standard transformer that generates sequences token by token.
+
+Switch between models by changing `MODEL_TYPE` in config.py.
+
+## Data Format
+
+- **VAE**: CSV with `input` and `target` columns
+- **Autoregressive**: CSV with `Center_Sequence` and `Noisy_Read` columns
+
+## Analysis
+
+The framework includes comprehensive error analysis:
+- Insertion/deletion/substitution rates
+- Position-wise error patterns  
+- K-mer frequency analysis
+- Substitution matrices
+
+Results are automatically generated during inference.
